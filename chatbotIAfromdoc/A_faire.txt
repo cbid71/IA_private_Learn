@@ -1,0 +1,35 @@
+Coté accumulation de données
+
+- récupération du git de doc
+- Déclaration du embedding
+- Déclaration du Vector_store avec la connexion postgresql
+- variable sous directory qui contient la doc
+- parse des markdowns pour récupérer du contenu
+- split du contenu en chunks/documents
+- stockage des chunks dans la BDD vector store
+
+
+Coté serveur
+
+Déclaration FastAPI
+Déclaration d'une interface /api/search/
+	associé à une fonction search_documentation
+		Déclaration d'un embedding
+		Déclaration d'un vectorstore
+		Récupération de la question client (embed query)
+		Régénération du prompt
+		Déclaration du LLM à utilisé
+		Lancement de la fonction Generate()
+			récupération du contexte (retrieve, dont les docs)
+					Dans le retrieve
+						Recherche dans la vector BDD à partir de la question
+						Renvoi des retrieve docs
+			définition du prompt qui appelle les docs_content
+			appel du LLM avec le prompt --> réception d'une réponse
+			Mise en forme de la réponse
+			Return de la réponse
+
+
+Coté client
+
+Envoi d'une question via curl sur http://<IP>:<port>/api/search/
