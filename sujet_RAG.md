@@ -342,12 +342,16 @@ A l'usure nous avons constaté que ces mesures sont bonnes.
 
 # Notion de deeplearning et de modèle fine tuned
 
-C'est ce qui permet de créer un modèle from scratch ou de le customiser au besoin
+C'est ce qui permet de créer un *modèle de données* from scratch ou de le *customiser au besoin*.
 
-- Deeplearning : création d'un nouveau modèle
-- Fine tunning : customisation d'un modèle existant
+  - Deeplearning : création d'un nouveau modèle de données à partir de sources associées à un algorithme
+  - Fine tunning : customisation d'un modèle de données existant
 
- Outils principaux :
+Le *deeplearning* est à la base de la créations des modèles de données. Mais le deeplearning prend des entrants, les passe dans un algorithme et sort une informations. C'est du machine learning.
+Un *modèle de données* peut sortir de nouvelles données à partir de divers calculs de similarités avec un entrant + une part de créativité. On parle d'IA générative.
+
+
+Outils principaux :
 	- pytorch
 	- tensorflow ( très bientôt obsolète )
 
@@ -358,17 +362,16 @@ C'est ce qui permet de créer un modèle from scratch ou de le customiser au bes
 	- on va passer ce filtrat dans un LLM pour qu'il génère une réponse
 
 
-Exemple : On veut récupérer les meilleures entreprises parmis notre liste, selon des critères établis complexes.
+**Exemple :** On veut récupérer les meilleures entreprises parmis notre liste, selon des critères établis complexes.
 
-```
-	On part d'une liste d'entreprises avec des infos associées (age, CA...)
-	Filtering			---> on réalise les embeddings (liste des entreprises avec leurs caractéristiques) AKA une entreprise == un vector
-	Obtention d'une réponse		---> on fine tune un modèle pour le besoin client en travaillant les données métiers dans le modèle (on lui apprend à faire un score)
-	On cale du deeplearning aux étapes de filtering et de scoring
+On part d'une liste d'entreprises avec des infos associées (age, CA...) :
 
-	Rappel = un modèle est plus un algorithme d'apprentissage, qui retiendrait ensuite des infos
-		on n'insère pas de données dans le modèle, on fait travailler le modèle avec des données et il apprend à mieux travailler.
-```
+**Filtering** --------------------------> on réalise les embeddings (liste des entreprises avec leurs caractéristiques) AKA une entreprise == un vector
+**Obtention d'une réponse** ------------> on fine tune un modèle pour le besoin client en travaillant les données métiers dans le modèle (on lui apprend à faire un score)
+
+On cale du deeplearning aux étapes de filtering et de scoring
+
+
 
 
 
