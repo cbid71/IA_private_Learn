@@ -13,7 +13,7 @@ Source tuto : https://python.langchain.com/docs/tutorials/rag/
 
 _____________________________
 
-# Installation 
+## Installation 
 
 ```
 mkdir -p RAG/venv
@@ -28,9 +28,11 @@ A ce stade on a une source web quelconque ( une page web, un markdown etc...)
 PUIS
 On va établir un modèle à partir de ça, le modele est une sorte de """"base de données"""" au format particulier qu'on va pouvoir interroger.
 Pour faire un modele on a trois possibilités
- - from scratch : un modèle de zéro
- - finetune : un modèle préexistant qu'on va venir configurer avec des données spécifiques qui vont être intégrées dans le modèle
- - RAG : on définit une base de données contenant des données maison et la requête client va être comparée aux données maison avant d'être passée dans un modèle préexistant pour établir une réponse compréhensible par un humain
+ - **from scratch :** un modèle de zéro
+ - **finetune :** un modèle préexistant qu'on va venir configurer avec des données spécifiques qui vont être intégrées dans le modèle
+ - **RAG :** on définit une base de données contenant des données maison et la requête client va être comparée aux données maison avant d'être passée dans un modèle préexistant pour établir une réponse compréhensible par un humain
+
+
 
 
 **CHOIX :** Ici on prend RAG qui est la solution majoritaire
@@ -40,39 +42,43 @@ Pour réaliser notre RAG, on va prendre le framework LangChain
 LangChain is a framework for developing applications powered by large language models (LLMs).
 
 Avec langchain on va pouvoir attaquer notre source ( exemple une documentation écrite en markdown ou une page web)
-et la découper en "chunks" en gros des morceaux de texte représentés mathématiquement sous la forme de vecteurs, et que l'intelligence va pouvoir interpréter
+et la découper en "chunks" en gros des morceaux de texte représentés mathématiquement sous la forme de vecteurs, et que l'intelligence va pouvoir interpréter./
 
-https://python.langchain.com/docs/tutorials/rag/
+*source du tuto :* https://python.langchain.com/docs/tutorials/rag/
+
+
+## C'est quoi un RAG ?
 
 Typiquement un "RAG" se compose de deux éléments :
 
- - une indexation : a pipeline for ingesting data from a source and indexing it. This usually happens offline.
- - une partie Retrieval and Generation : the actual RAG chain, which takes the user query at run time and retrieves the relevant data from the index, then passes that to the model.
+ - **une indexation :** a pipeline for ingesting data from a source and indexing it. This usually happens offline.
+ - **une partie Retrieval and Generation :** the actual RAG chain, which takes the user query at run time and retrieves the relevant data from the index, then passes that to the model.
 
 Et l'idée va être de passer notre source au travers de plusieurs étapes :
 
 *** trois étapes pour l'indexation : 
- - Load : First we need to load our data. This is done with Document Loaders.
- - Split : Text splitters break large Documents into smaller chunks. 
- - Store : We need somewhere to store and index our splits, ( le stockage est fait sous forme de vecteurs dans une base )
+
+ - **Load :** First we need to load our data. This is done with Document Loaders.
+ - **Split :** Text splitters break large Documents into smaller chunks. 
+ - **Store :** We need somewhere to store and index our splits, ( le stockage est fait sous forme de vecteurs dans une base )
 
 
 *** deux étapes pour le retrieval and generation :
- - Retrieve : Given a user input, relevant splits are retrieved from storage using a Retriever.
- - Generate : sous la forme d'un ChatModel/Prompt, qui va transmettre à un LLM - produces an answer using a prompt that includes both the question with the retrieved data
+ - **Retrieve :** Given a user input, relevant splits are retrieved from storage using a Retriever.
+ - **Generate :** sous la forme d'un ChatModel/Prompt, qui va transmettre à un LLM - produces an answer using a prompt that includes both the question with the retrieved data
 
 Apparemment on peut orchestrer les RAG via ce que langchain appelle LangGraph mais c'est plutôt quelque chose de propre à LangChain
 
-# Installation pour réaliser le RAG
+## Installation pour réaliser le RAG
 
-## le splitter
+### le splitter
 
 ```
 pip install --quiet --upgrade langchain-text-splitters langchain-community langgraph
 ```
 
 
-## la plateforme de développement LangSmith (optionnel)
+### la plateforme de développement LangSmith (optionnel)
 
 https://smith.langchain.com/
 
@@ -84,7 +90,9 @@ os.environ["LANGSMITH_TRACING"] = "true"
 os.environ["LANGSMITH_API_KEY"] = getpass.getpass()
 ```
 
-## Le chat model (nous choisissons Ollama parce qu'on l'a en local, le produit Ollama en tant que serveur d'inférence peut remplir plusieurs role dont celui-ci, mais nous pourrions aussi utiliser NVidia)
+### Le chat model 
+
+Nous choisissons Ollama parce qu'on l'a en local, le produit Ollama en tant que serveur d'inférence peut remplir plusieurs role dont celui-ci, mais nous pourrions aussi utiliser NVidia)
 
 Puisque nous choisissons d'utiliser Ollama pour la partie ChatModel
         pip install -qU langchain-ollama
@@ -108,7 +116,7 @@ Petit point à ce stade, on aura la notion de prompt :
 
 
 
-## Le embedding Model 
+### Le embedding Model 
 
 Le but du Embedding model va être d'aller fouiller dans les vecteurs ( appelés "embeddings" ) pour isoler les bonnes sources qui serviront plus tard à faire la réponse.
 On choisi Ollama parce qu'on a un serveur d'inférence en local, mais on pourrait choisir AWS, Azure ou OpenAI.
@@ -123,7 +131,7 @@ pip install -qU langchain-ollama
 Test de fonctionnement associé : test-ollama-embeddingsmodel.py
 
 
-## Le vector Store
+### Le vector Store
 
 La base de données vectorielle qui stocke les vecteurs issus du découpage
 
@@ -133,7 +141,7 @@ Pour , on pourrait choisir des BDD comme pgvector)
 pip install -qU langchain-core
 ```
 
-Test de fonctionnement associé : test-inmemory-vector-store.py
+Test de fonctionnement associé : `test-inmemory-vector-store.py`
 
 
 Pour des raisons pratiques ultérieures nous essayons un autre vector Store : postgresql+PGVector
@@ -154,7 +162,7 @@ psql
 pip install -qU langchain-postgres
 ```
 
-Test de fonctionnement associé : test-pgvector-vector-store.py
+Test de fonctionnement associé : `test-pgvector-vector-store.py`
 
 
 # Premier script de génération d'un RAG
