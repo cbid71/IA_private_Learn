@@ -95,13 +95,17 @@ os.environ["LANGSMITH_API_KEY"] = getpass.getpass()
 Nous choisissons Ollama parce qu'on l'a en local, le produit Ollama en tant que serveur d'inférence peut remplir plusieurs role dont celui-ci, mais nous pourrions aussi utiliser NVidia)
 
 Puisque nous choisissons d'utiliser Ollama pour la partie ChatModel
-        pip install -qU langchain-ollama
-        Test de fonctionnement associé :  RAG/test-ollama-chatmodel.py
+```
+pip install -qU langchain-ollama
+```
+Test de fonctionnement associé : `RAG/test-ollama-chatmodel.py`
+
 
 Si nous avions choisi NVidia
-        pip install -qU langchain-nvidia-ai-endpoints
-        Test de fonctionnement associé : RAG/test-nvidia-chatmodel.py
-
+```
+pip install -qU langchain-nvidia-ai-endpoints
+```
+Test de fonctionnement associé : `RAG/test-nvidia-chatmodel.py`
 
 
 Petit point à ce stade, on aura la notion de prompt :
@@ -170,7 +174,7 @@ Test de fonctionnement associé : `test-pgvector-vector-store.py`
 A présent nous pouvons faire notre premier script de génération d'un RAG
 
 
-Dependances : 
+Dépendances : 
 ```
 #       - jouer la partie sur postgresql+pgvector juste au dessus
 #	- installer Ollama sur la machine
