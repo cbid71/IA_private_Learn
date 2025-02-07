@@ -28,7 +28,7 @@ def load_markdown_files(directory):
 
 # Main function
 def main():
-    source_directory = "/home/cyrille-biard/travail/Sources/RAG/keycloak/docs"
+    source_directory = "/home/cyrille-biard/travail/Sources/keycloak/docs"
     docs = load_markdown_files(source_directory)
     print(f"Total documents loaded: {len(docs)}")
     

@@ -249,9 +249,9 @@ python create_vector.py
 python query_handler.py
 ```
 
-# Petit exercice perso le chatbot && un RAG
+# Petit exercice perso le chatbot && un RAG simple
 
-Voir le dossier chatbotIAfromdoc/
+Voir le dossier `chatbot/`
 - un script qui récupère les données dans les sources clients
 - un serveur qui récupère les questions clientes et établit une réponse
 - une IHM pour que ce soit plus agréable pour l'utilisateur ( à établir )
@@ -305,6 +305,13 @@ Concrètement la *RAG chain* est un enchainement de questions-réponses par lequ
 - L'utilisateur entre une troisième question, en contexte sont précisés les documents des réponses 1 et 2, une réponse est générée et affichée, les documents sont conservés en mémoire
 
 La boucle de ces trois points se répètent boucle jusqu'à une clause de fin de la discussion.
+
+
+# Petit exercice perso le chatbot et une RAG chain
+
+```
+TODO à se faire ça plus tard, avec une boucle de questions qui reprennent les documents associés à la réponse de la question précédente et conservent l'ensemble des documents
+```
 
 
 # Notion de temperature :
