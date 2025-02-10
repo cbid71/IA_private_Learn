@@ -345,6 +345,9 @@ Une bonne pratique de RAG consiste à placer la température des embeddings à 0
 A l'usure nous avons constaté que ces mesures sont bonnes.
 
 
+# Source vidéo 
+
+https://www.youtube.com/watch?v=ZbWL2W53BXY
 
 
 # Notion de deeplearning et de modèle fine tuned
@@ -411,7 +414,7 @@ A voir
 
 # FINALEMENT : les modèles génératifs !!
 
-# Modèle de base
+## Modèle de base
 
 Génération = prédiction statistique
 A l'aide du deeplearning on créé un modèle basé sur des milliards de mots, et on fait des calculs statistiques sur la présence de chaque mot après chaque autre. On obtient un modèle.
@@ -436,6 +439,70 @@ en fin de parcours on a développé le concept de prompt ingeniering, la "scienc
 
 Problème de cette approche du modèle LLM "de base", il fait plus de la complétion que du dialogue, c'est un assez mauvais chatbot, c'est ce pourquoi on a créé des modèles faits pour les interactions.
 
-# Modèles avec interaction
+## Modèles avec interaction
+
+Ici les modèles vont être influencés sur la qualité de leur réponse : 
+- Soit par scoring : couteux et peu pratique
+- Soit par prompting : demande plusieurs essais (few shot) et un contexte pertinent (chain of though)
+- Soit par fine tunning OU pré-training : templating de prompt pour simplifier l'approche --> prompt + instruction sur comment répondre, l'utilisateur pose sa question et a déjà un prompt context qui informe précisément comment répondre.
+
+La dernière méthode est la plus simple à aborder, et efficace sur les modèles généralistes.
 
 
+Le soucis : c'est que quelque soit l'approche on a toujours un coté statistique et on va quand même avec des générations fausses ou biaisées dites "toxiques".
+- Soit on opte pour une approche humaine systématique, impossible sur les gros jeux de données)
+- Soit on opte pour une approche RLHF : on créé un deuxième modèle qui va avoir pour but de prédire la qualité de la génération du premier modèle
+
+Le RLHF, c'est basiquement le fait de créer un mini-modèle basé sur un dataset de données contrôlées, et ce modèle/ va controler que la réponse du premier modèle n'est pas toxique, fausse etc...
+Reinforcement Learning with Human Feedback
+
+Concernant ce système à deux modèles le mini-modèle sert d'alignement, le fait d'essayer de casser cet alignement s'appelle le jailbreaking.
+
+A ce moment on obtient un produit qui commence à bien fonctionner.
+
+## Modèles multimodaux
+
+c'est avec ce type de modèle qu'on va pouvoir avoir des entrées non plus seulement textuelles mais aussi des images.
+ 
+## A propos des hallucinations
+
+Les modèles font des aproximations continues, empêchant d'avoir des résultats purs et parfaits, et on tombe régulièrement sur des résultats extrapolés alors qu'on voudrait des résultats précis.
+L'idée pour limiter ces hallucinations est de forcer un travail du LLM en plusieurs étapes et d'**adjoindre aux LLM une source ou un outil externe pour les étapes nécessitant de la précision/** : 
+- Base de données wikipedia pour l'histoire
+- Une calculatrice pour faire des maths
+- ...
+
+**Exemple d'un outil framework pour faire cette aide externe via prompt engineering:** Framework ReAct (rien à avoir avec le langage)
+
+Gros avantage de cette approche : pas d'apprentissage de modèle, tout passe par du prompt engineering.
+Défaut prévus à terme pour cette approche : le prompt est limité, on devra à terme revenir sur du fine-tuning ( intégration de notre gros contexte directement dans le modèle )
+Autre gros défaut : pour des besoins très avancés ce n'est pas parfait à 100%
+
+## Déport du prompt dans le modèle
+
+**rappel :** fine-tunning = spécialisation du modèle pour obtenir un résultat optimisé dans un domaine spécifique.
+
+Comme dit dans le chapitre précédent, le prompt engineering est très pratique mais il reste limité, surtout quand le prompt devient très gros, il faut alors retourner sur du fine-tunning et réincorporer les données du prompt dans le modèle
+
+**Exemple d'un famework permettant de libérer le prompt et de travailler avec du fine-tunning :** Toolformer 
+
+Le dataset pour entrainer le modèle peut même est généré via IA lui-même.
+
+## Modèles augmentés (approche par plugin)
+
+On peut donc utiliser des outils externes pour ajuster les résultats et éviter les hallucinations.
+Certaines structures -comme Open AI- mettre à disposition un écosystème de plugins pour venir compléter les retours des IA.
+Chez Open AI (chatGPT) le store s'appelle les GPT plugins.
+
+Ces plugins peuvent faire des maths, taper dans une base, aller regarder sur wikipedia etc...
+ 
+**Pour ces modèles assistés par outils, on parle de modèle augmenté.**
+
+La suite logique est de permettre aux modèles ( et à leurs plugins ) d'aller plus loins que la seule recherche de données sources, mais également d'aller parser des données et de navi>
+On parle d'agents AI.
+
+Cette approche par modèle assisté est très puissantes, mais peu sécurisées (hack par prompt vérolé), risque de boucles infinies, et hallucinations plus difficiles à détecter.
+
+## Enrichissement par Agent AI
+
+`TODO`
