@@ -1,4 +1,4 @@
-# Retrieval Augmented Generation
+4# Retrieval Augmented Generation
 
 l’idée c’est d’avoir une source de données, en markdown par exemple
 pour la découper sous forme de chunks dans une base de données type vectordb
@@ -349,6 +349,8 @@ A l'usure nous avons constaté que ces mesures sont bonnes.
 
 # Notion de deeplearning et de modèle fine tuned
 
+Le deeplearning c'est la base de la création des modèles LLM, mais dans son fonctionnement ça n'a rien à voir.
+
 C'est ce qui permet de créer un *modèle de données* from scratch ou de le *customiser au besoin*.
 
   - Deeplearning : création d'un nouveau modèle de données à partir de sources associées à un algorithme
@@ -363,8 +365,8 @@ Outils principaux :
 	- tensorflow ( très bientôt obsolète )
 
 
-ça va toujours être plus ou moins le même principe :
-	- on a une source métier
+L'idée derrière le traitement des données par IA va toujours être plus ou moins le même principe :
+	- on a une source métier, des données brutes
 	- on va filtrer cette source métier
 	- on va passer ce filtrat dans un LLM pour qu'il génère une réponse
 
@@ -373,14 +375,67 @@ Outils principaux :
 
 On part d'une liste d'entreprises avec des infos associées (age, CA...) :
 
-**Filtering** --------------------------> on réalise les embeddings (liste des entreprises avec leurs caractéristiques) AKA une entreprise == un vector
-**Obtention d'une réponse** ------------> on fine tune un modèle pour le besoin client en travaillant les données métiers dans le modèle (on lui apprend à faire un score)
+**Source** -----------------------------> nos données brutes sur les entreprises
+**Filtering** --------------------------> on réalise les embeddings (liste des entreprises avec leurs caractéristiques) AKA une entreprise == un vector, le découpage peut être complexe
+**Obtention d'une réponse/scoring** ------------> on fine tune un modèle pour le besoin client en travaillant les données métiers dans le modèle (on lui apprend à faire un score)
 
-On cale du deeplearning aux étapes de filtering et de scoring
+On cale du deeplearning aux étapes de filtering et de scoring.
+A ce stade on n'a pas encore vu de fine tuning
+
+Note : On parle de BERT comme nom des premiers modèles d'interprétation de langage naturel, camemBERT par exemple permet de comprendre le français.
 
 
+# le découpage de vecteurs/embeddings
 
+Sur le papier on pourrait penser qu'un vecteur == une donnée (pour reprendre notre exemple au dessus un vecteur == une entreprise)
+Dans les faits c'est un choix raide, et on aura tendance à découper des données en plusieurs vecteurs avec du metric-learning par exemple.
+Une des modélisations type deeplearning, on peut jouer avec un concept d'attention.
 
+---> attention tout ce travail peut être très chronophage.
+Il ne faut pas chercher la perfection, sous peine d'avoir quelque chose de sur-optimisé.
+
+# Déploiement
+
+- la recherche prend beaucoup de temps
+- on peut sortir le réseau neuronal ( pytorch ) au format ONNX `TODO : ça veut dire quoi ? `
+- petit budget ==> optimisation du modèle
+
+optimisation du modèle, c'est tout le travail sur:
+- la récupération des données
+- le traitement des erreurs
+- le suivi de la conso du GPU
 
 # principe de trainer et de training
 A voir
+
+
+# FINALEMENT : les modèles génératifs !!
+
+# Modèle de base
+
+Génération = prédiction statistique
+A l'aide du deeplearning on créé un modèle basé sur des milliards de mots, et on fait des calculs statistiques sur la présence de chaque mot après chaque autre. On obtient un modèle.
+
+Une fois le modèle obtenu on peut lui donner un entrant, il va générer une sortie en se basant sur des arrondissements statistiques.
+
+
+On retrouve le principe de prompting pour améliorer l'entrée du modèle génératif =!= fine tunning
+
+Il s'avère que le fine tuning n'est pas à la portée de n'importe qui, c'est même très complexe, surtout sur les modèles génératifs, du coup on va préférer du prompting
+
+- prompting = on améliore l'élément en entrée du modèle avec tout un contexte
+- fine tuning = on spécialise le modèle
+
+Problème du prompting = implique un gros modèle pour de meilleurs résultats, surtout pour un modèle qui devra répondre "à tout"
+
+Ce sont ces gros modèles généralistes que l'on nomme concrètement **LLM**.
+
+Il y a eu un gros travail de recherche pour optimiser la taille du modèle et la taille du jeu de données pour entrainer, mais on est toujours sur des milliards de paramètres et de données.
+
+en fin de parcours on a développé le concept de prompt ingeniering, la "science" de comment optimiser un prompt pour obtenir les meilleurs résultats.
+
+Problème de cette approche du modèle LLM "de base", il fait plus de la complétion que du dialogue, c'est un assez mauvais chatbot, c'est ce pourquoi on a créé des modèles faits pour les interactions.
+
+# Modèles avec interaction
+
+
