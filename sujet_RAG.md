@@ -528,32 +528,40 @@ L'agent IA n'a pas seulement pour vocation de servir d'entrée mais aussi d'outi
 Exemple de workflow impliquant un agent AI : 
 Je demande vocalement via un micro dans l'interface Telegram à envoyer un message à Michel
 
+Voici mon workflow
+
 ```
-Get message telegram
---> switch <if audio>
------> get audio file
------> transcription du fichier audio en texte --> chatgpt sait faire ça
------> passage de l'ordre textuel dans l'agent AI qui va bien
----------> Passage dans le chat antropomorphique pour que l'AI agent comprenne ce que l'on veut (on peut connecter à ce stade un produit comme Claude, Mistral, GPT etc...)
----------> connexion de l'agent AI au connector Gmail (penser à définir le prompt à ce stade)
+<Message Telegram> ----> Switch <if>
+				---> if audio --> transcrire audio to text via chatgpt -|--> passage de l'ordre textuel dans l'agent AI adapté
+				---> if texte ------------------------------------------|
 
-PUIS pour tester
+Une fois le message texte passé à l'agent AI ---> passage dans chat anthropomorphique (modèle de langage naturel) pour comprendre le texte (Claude, Mistral, GPT)
+------------------------------------------------> Connexion de l'agent AI au connector GMail --> permet d'envoyer un mail
 
-On envoit un message qui demande l'envoi d'un message à Michel
+Puis tester, voici ce qu'il se passe :
 
-Le message vocal est enregistré
-----> le message vocal est extrait
-----> Le message vocal est transcrit en texte
-----> l'agent IA intercepte l'ordre
--------> l'agent IA comprend ce qu'on veut par application du message dans le chat anthropomorphique
--------> l'agent IA a un connector gmail approprié, un "système message" qui lui templatise le message à envoyer & finalement l'agent IA envoi un message
+On veut envoyer automatiquement un message à Michel sur commande
+
+Envoi d'un message via la saisie VOCALE de télégramme
+--> extraction du message dans le workflow
+--> transcription du message vocal en texte
+--> passage du message textuel dans l'agent AI
+-------> transcription du message texte dans le modèle de langage naturel pour comprendre le message humain (là encore Claude, Mistral, GPT etc...)
+-------> récupération de la signification, alors comprise par l'agent AI
+-------> l'agent IA utilise le connecteur gmail pour envoyer le message avec des variables
+
+Note : l'agent AI peut enregistrer un "system message", un template qui templatise le message à envoyer  
+
 ```
 
 Autre exemple : https://www.youtube.com/watch?v=yWF3NvWdCPA
 
 
+Via un connector adapté, on pourrait tout à fait considérer de connecter plusieurs connectors à l'agent IA, par exemple un connector pour envoyer des mails Gmail, mais aussi un connector pour envoyer des rendez-vous Gcalendar.
+La compréhension grace au modèle de langage naturel de l'ordre donné par l'utilisateur suffit à faire la différence entre "envoi un message à Michel" et "fixe un rendez-vous avec Michel demain à 16h00", sachant que les connectors peuvent être configurés.
+
 
 ## Un petit lab amusant : on monte un n8n en local et on fait un workflow
 
-Voir le dossier n8n
+Voir le dossier /n8n/
 
