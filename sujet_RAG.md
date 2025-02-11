@@ -565,3 +565,18 @@ La compréhension grace au modèle de langage naturel de l'ordre donné par l'ut
 
 Voir le dossier /n8n/
 
+
+## Les connectors, le tooling, un exemple
+
+Nous avons vu plus tôt que nous pouvions enrichir les sources de travail de d'un modèle de recherche avec des agents AI qui vont aller piocher des ressources de façon intelligente.
+Encore avant nous avons vu que le tooling permettait de rentre les résultats plus exactes en évitant les approximations.
+
+Les connectors permettent de se connecter à la fois à des sources et à des outils.
+Un exemple de Claude ( modèle de données concurrent de ChatGPT et qui se présente comme lui sous la forme d'un chatbot ) appelle ces connectors des MCP. Ceux-ci viennent enrichir les datasets de Claude permettant d'avoir des résultats en temps réels et de faire de la génération
+- un MCP de recherche internet pour avoir des résultats
+- un MCP de google maps pour avoir des adresses physiques et une BDD de lieux
+- un MCP de github pour stocker les résultats d'éléments générés dans un git repository
+
+Et hop on peut demander avec l'aide du modèle Claude d'aller chercher des données sur une recherche internet, avec des adresses, de générer une page HTML présentant les données sous forme appropriée et de stocker le résultat dans un git.
+
+`TODO : adapter ça pour Ollama` 
