@@ -1,4 +1,4 @@
-4# Retrieval Augmented Generation
+# Retrieval Augmented Generation
 
 l’idée c’est d’avoir une source de données, en markdown par exemple
 pour la découper sous forme de chunks dans une base de données type vectordb
@@ -498,11 +498,62 @@ Ces plugins peuvent faire des maths, taper dans une base, aller regarder sur wik
  
 **Pour ces modèles assistés par outils, on parle de modèle augmenté.**
 
-La suite logique est de permettre aux modèles ( et à leurs plugins ) d'aller plus loins que la seule recherche de données sources, mais également d'aller parser des données et de navi>
+La suite logique est de permettre aux modèles ( et à leurs plugins ) d'aller plus loins que la seule recherche de données sources, en offrant des outils de récupération de données.
 On parle d'agents AI.
 
 Cette approche par modèle assisté est très puissantes, mais peu sécurisées (hack par prompt vérolé), risque de boucles infinies, et hallucinations plus difficiles à détecter.
 
 ## Enrichissement par Agent AI
 
-`TODO`
+Les agents AI sont des outils et des interfaces qui vont permettre de récupérer des informations de façon complexe, et réaliser des actions complexe sur ordre, rompant avec les seules chaines de caractère simples.
+- mise en place d'un dialogue d'échange (chatbot)
+- outil d'automatisation vocale avec langage naturel (Alexa, Siri...)
+- Agent de recommandation ( Netflix, Spotify, Amazon ) typiquement la section "vous pourrez aimer"
+- Robotique autonome ( voiture autonome )
+- Agent de trading haute fréquence
+- Agent de sécurité et détection des fraudes ( IA bancaire, cyber sécu )
+- ...
+
+ 
+L'intéret est qu'on peut **commencer à jouer avec des workflows** et intégrer de l'IA dans des infrastructures préexistances classiques pour y apporter une touche d'automatisation par IA
+
+Chacun de ces agents a la caractéristique d'avoir une méthode bien précise et une utilisation clairement définie pour obtenir des informations.
+
+L'agent IA n'a pas seulement pour vocation de servir d'entrée mais aussi d'outil de manipulation après traitement par les modèles : 
+--> Soit un ordre passé de façon vocal, cet ordre est transcrit en texte, puis passé dans un agent AI pour executer concrètement l'ordre.
+
+**Exemple d'interface de construction de workflow avec Agent AI :** N8N , qui existe en version pro ou en version community
+
+
+Exemple de workflow impliquant un agent AI : 
+Je demande vocalement via un micro dans l'interface Telegram à envoyer un message à Michel
+
+```
+Get message telegram
+--> switch <if audio>
+-----> get audio file
+-----> transcription du fichier audio en texte --> chatgpt sait faire ça
+-----> passage de l'ordre textuel dans l'agent AI qui va bien
+---------> Passage dans le chat antropomorphique pour que l'AI agent comprenne ce que l'on veut (on peut connecter à ce stade un produit comme Claude, Mistral, GPT etc...)
+---------> connexion de l'agent AI au connector Gmail (penser à définir le prompt à ce stade)
+
+PUIS pour tester
+
+On envoit un message qui demande l'envoi d'un message à Michel
+
+Le message vocal est enregistré
+----> le message vocal est extrait
+----> Le message vocal est transcrit en texte
+----> l'agent IA intercepte l'ordre
+-------> l'agent IA comprend ce qu'on veut par application du message dans le chat anthropomorphique
+-------> l'agent IA a un connector gmail approprié, un "système message" qui lui templatise le message à envoyer & finalement l'agent IA envoi un message
+```
+
+Autre exemple : https://www.youtube.com/watch?v=yWF3NvWdCPA
+
+
+
+## Un petit lab amusant : on monte un n8n en local et on fait un workflow
+
+Voir le dossier n8n
+
