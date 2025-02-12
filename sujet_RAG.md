@@ -566,7 +566,7 @@ La compréhension grace au modèle de langage naturel de l'ordre donné par l'ut
 Voir le dossier /n8n/
 
 
-## Les connectors, le tooling, un exemple
+## Les connectors, le tooling
 
 Nous avons vu plus tôt que nous pouvions enrichir les sources de travail de d'un modèle de recherche avec des agents AI qui vont aller piocher des ressources de façon intelligente.
 Encore avant nous avons vu que le tooling permettait de rentre les résultats plus exactes en évitant les approximations.
@@ -578,5 +578,9 @@ Un exemple de Claude ( modèle de données concurrent de ChatGPT et qui se prés
 - un MCP de github pour stocker les résultats d'éléments générés dans un git repository
 
 Et hop on peut demander avec l'aide du modèle Claude d'aller chercher des données sur une recherche internet, avec des adresses, de générer une page HTML présentant les données sous forme appropriée et de stocker le résultat dans un git.
+
+Note : les "Agent IA" servent de composant dans des workflow, les agents AI sont des "modèles d'intelligence artificielle" qui reçoivent des connectors. Ce qu'on nomme le tooling est davantage ce qui vient en amont ou en aval.
+
+## Exercice : utiliser Ollama avec des connectors (si possible) pour lui faire faire des choses.
 
 `TODO : adapter ça pour Ollama` 
