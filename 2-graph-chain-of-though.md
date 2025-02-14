@@ -107,3 +107,16 @@ Tom a volé un gateau, le fait qu'il ait un complice est une supposition
 
 Le grand avantage est de permettre un choix ultérieur par intervention d'une machine ou d'un humain, limitant ainsi les erreurs potentielles qui surviendraient par l'établissement d'une réponse unique.
 
+## Notion de Graph RAG LLM
+
+Nous avons vu dans un autre document la notion de RAG LLM : une requête utilisateur est passée au travers d'un LLM enrichi par une base de données vectorielle portant des données métier, et le modèle intervient à deux étapes, celle de la recherche des informations pertinentes et celle de la mise en langage naturel de la réponse.
+Une extension de cette approche est la notion de Graph RAG LLM, où en plus des deux étapes d'acquisition et de mise en forme des données, une troisième étape intermédiaire entre en jeu pour récupérer le graphe.
+
+Le plus simple est de consulter cette page qui explique tout avec les différents types d'approches :
+
+**Source :** https://medium.com/@zilliz_learn/graphrag-explained-enhancing-rag-with-knowledge-graphs-3312065f99e1
+
+## Références :
+
+Conférence et document de recherche sur le Graph Chain of though : https://www.amazon.science/publications/graph-chain-of-thought-augmenting-large-language-models-by-reasoning-on-graphs
+
