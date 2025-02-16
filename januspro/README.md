@@ -81,4 +81,6 @@ Laisser l'image finir de se déployer
 
 
 Puis contacter l'adresse gradio mise à disposition coté log.
-L'interface est également accessible directement en local.
+L'interface est également accessible directement en local `http://127.0.0.1:7860`
+
+Attention à ce stade il reste des liens avec l'IHM Gradio, peut-être à retirer.
