@@ -72,7 +72,7 @@ Déployer un container à partir de cette image
 
 
 ```
-docker run -it -p 7860:7860 -d -v huggingface:/home/cyrille-biard/.cache/huggingface --gpus all --name janus janus:latest
+docker run -it --network=host -p 7860:7860 -d -v huggingface:/home/cyrille-biard/.cache/huggingface --gpus all --name janus janus:latest
 
 docker logs janus
 ```
