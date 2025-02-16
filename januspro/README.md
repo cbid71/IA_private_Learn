@@ -13,8 +13,11 @@ Installer docker en local
 ```
 apt-get install -y nvidia-container-toolkit
 
+mkdir -p /home/cyrille-biard/.cache/huggingface
+
 git clone https://github.com/deepseek-ai/Janus.git
 cd Janus
+
 ```
 
 
