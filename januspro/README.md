@@ -77,3 +77,5 @@ docker logs janus
 Laisser l'image finir de se déployer
 
 
+Puis contacter l'adresse gradio mise à disposition coté log.
+L'interface est également accessible directement.
