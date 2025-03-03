@@ -8,6 +8,16 @@ Le framework permet de coordonner ces agents par un autre agent qui va servir à
 
 https://github.com/awslabs/multi-agent-orchestrator
 
+---
+
+Soient 
+ - les chunks : découpages de documents en idées conceptuelles
+ - les tokens : découpages des chunks en mots
+ - les vecteurs : représentation mathématiques des tokens dont la proximité dans les valeurs obtenues permet de mettre en relation des concepts complets de telle sorte que deux vecteurs avec une valeur proche et donc un concept lié ont une "cosine similarity" haute (valeur proche de 1)
+
+---
+
+Lien utile pour passer au travers de la gestion de données en détail avec exemples de code : https://datacorner.fr/document-chunking/
 
 ---
 
