@@ -42,6 +42,7 @@ Supervised learning algorithm -> used for classification -> **mathematical regre
 
 ![Regression](./pictures/regression.png)
 
+Reminder : **Regression** -> get X next values. 
 
 **Partial Dependance Plot (PDP)** --> show how a feature can influence a result
 
@@ -119,7 +120,7 @@ Of course things like IAM controls and Multi factor authentications are great.
 Performance :
 - Model Accuracy : ratio of positive predictions
 - Precision : Ratio of true positive predictions
-- Recall : Ratio of true positive predictions / Ratio of Total Positive Prediction 
+- Recall : Ratio of true /positive predictions / Ratio of Total Positive Prediction 
 - FI-Score : Average of Precision and Recall
 - Latency : Time taken by the model to make a prediction
 
