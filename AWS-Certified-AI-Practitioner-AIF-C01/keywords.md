@@ -1,7 +1,7 @@
 
 **RNN :** (Recurrent Neural Network) Type of neural network good to handle sequences of data like text or time series.
 
-**Bias :** a model have been trained with sepcific datasets, so can give non optimal answers. The bias is the measure related to this non optimal answer.
+**Bias :** a model have been trained with specific datasets, so can give non optimal answers. The bias is the measure related to this non optimal answer.
 
 
 Make it clearer (section 8):
@@ -26,6 +26,9 @@ type of machine learning where an agent learns to make decisions by receiving re
 
 ROUGE (Recall Oriented Understudy for Gisting Evaluation)
 **ROUGE** is a metric to **evaluate text sumarization and text generation**
+
+**BLEU**
+Metric on text translation
 
 
 **Fine-Tuning**
