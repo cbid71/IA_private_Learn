@@ -270,4 +270,197 @@ peut également cacher quelques PII
 
 - Amazon Personalize : permet de proposer des recommandations utilisateur à la manière de ce qui se fait sur une boutique type Amazon.com
 
+- Textract : extraction de données utiles d'un document formatté (type document de saisie en pdf)
 
+- Kendra : IA spécialisée dans le chatbot clientèle
+
+- Mechanical Turk : Slavery-as-a-service, possibilité de soustraire des actions simples à une équipe tierce, soit en local, soit auprès d'un CDS AWS, soit auprès d'un marketplace, avec une paye à la tâche
+
+- Amazon Augmented AI (A2I) : Une partie de SageMaker 
+--- qui permet d'avoir une review humaine
+--- qui peut faire l'objet d'une commande auprès de Mechanical Turk, d'un marketplace, ou d'une équipe locale
+--- fonctionne comme un pipeline
+
+---
+
+Hardware :
+
+Trainium = 50% reduction de cout pour entrainer un modèle
+Inferencia = jusqu'à 70% de reduction de cout pour faire de l'inférence
+
+---
+
+SageMaker : Plateforme de création, de gestion et de fine-tunning de modèle
+
+Data Wrangler : Préparation et transformation de données
+- litt: gestionnaire de données
+- à comprendre : "hey range ces données correctement"
+
+Feature Engineering : Enrichissement de la donnée au niveau du Dataset, ajout de nouvelles données, par exemple de nouvelles colonnes dans un excel, de formattage different pour une meilleur analyse etc...
+
+SageMaker Clarify : 
+- Evaluation et comparaison de modèle
+- Trouver le meilleur modèle
+- Debug des prédictions
+
+---
+
+SageMaker GroundTruth : Renforcement Learning avec Human Feedback (RLHF)
+
+---
+
+Model Card : toutes les infos à propos d'un modèle
+- risque
+- type d'entrainement
+- bias
+- ...
+++ présence d'un Model Dashboard pour choisir le modèle le plus adapté
+---
+
+SageMaker Pipeline : Du devops mais pour les modèles
+---
+
+JumpStart : public hub for most known models
+-> good to make you start working on an existing model
+
+SageMaker Canvas : Visually build a model
+
+SageMaker MLFlow : model Lifecycle
+
+SageMaker Isolation Mode : pour ne pas passer sur le web
+
+DeepAR Forecasting Algorithm : forecast time series data
+
+---
+
+Amazon Q developer : Plateforme pour faire des apps bosstées par IA
+
+---
+
+- Responsible AI 
+--> Tout ce qui se rapporte à la légalité ou à la véracité des réponses d'un modèle du point de vue éventuellement moral mais surtout pertinent.
+
+- Compliance == Pertinence + Lutte contre les hallucinations + lutte contre la "toxicité"
+
+AWS met en place des outils comme Guardrail pour définir des règles permettant d'empêcher/limiter des sujets, ou Clarify our comprendre les modèles
+
+- Governance = enforce compliance
+
+- Explainability = compenser les biais d'apprentissage
+
+- Interpretability = comprendre les réponses et pourquoi on obtient telle ou telle réponse
+
+- Exposure = ce que le modèle va afficher ou ce qu'il ne doit pas
+
+- AWS AI Service Card = Liste de tous les points donnés ci-dessus + Version + name + release date...
+Plus ou moins égal aux Model Cards pour les services internes à AWS boostés par IA.
+
+---
+
+- Partial Dependance Plot (PDP) : Show how a feature influence a result
+
+- Human centered Design : for explainable AI, designed for human AND AI learning, with cognitif apprentship
+
+- Model Card : description de modèle qui expose les biais et les risques de l'utilisation du dit modèle
+
+---
+
+AWS MACIE = Sorte de comprehend (compréhension du langage naturel) mais là où comprehend va prendre une source texte, MACIE va fonctionner au niveau objet pour détecter des données sensibles (PII par exemple)
+
+---
+
+AWS Inspector = pas spécialement lié à l'IA, va donner des infos sur l'état système de l'ensemble des éléments déployés sur le compte AWS en cours.
+
+---
+
+Transfer Learning : When a model that has already learn something from one task is used to help to solve different but related tasks
+
+Feature Store = share data accross multiple teams
+
+AWS Artifact : Made to share compliance report, product documentation and whitepaper
+
+---
+
+Underfit models experience high bias
+
+Overfit models experience high variance
+
+Bias : erreur de réponse optimale pour cause de sous entrainement sur un sujet donné, ou pour cause d'entrainement inadapté
+
+Variance : variation dans le comportement du modèle en fonction du dataset
+
+On veut le moins de bias possible
+On en aura forcément un peu, sinon on risque l'overfit avec un modèle incapable de travailler correctement avec autre chose que des données d'entrainement
+MAIS si on a trop bias alors on underfit
+
+On veut le moins de variance possible
+MAIS il en faut quand même un peu sinon c'est sûr qu'on underfit.
+
+
+- Underfit = HIGH Biais LOW variance
+- Overfit = LOW Bias HIGH variance
+
+
+Recommended solution for developping LLM based solution
+--> Amazon Bedrock
+--> Amazon SageMaker JumpStart
+
+---
+
+On AWS
+- each region consist of 3 AZ 
+- each of AZ is in a different datacenter
+
+---
+
+- Self supervised learning => RAW data
+- Unsupervised learning => UNLABELED data
+- Supervised Learning => LABELED data
+- Reinforcement Learning => LEARN WITH SOME SCORING
+
+---
+
+Transcribe batch language -> identify the language
+Transcribe custom langugage -> pour ajouter des mots techniques dans le dictionnaire de Transcribe
+
+---
+
+GenAI migh produce bias content or inappropriate content => Need human review if it's absolutely critical
+
+---
+
+Instruction based fine-tunning => Prompt-Response pairs with telling it "hey this way of working is correct" or "this prompt-reponse is false" sent to the model.
+
+---
+
+Jumpstart sait créer des images MAIS Il nécessite un peu de monitoring pour le maintenir à flot, ce qui n'est pas le cas de bedrock qui fonctionne tout seul.
+Il peut être utilisé pour utiliser rapidement une IA dans un cadre donné
+Il sait faire de l'automatisation -> exemple :
+
+```
+Text sumarization -> contract rules à vérifier, et validité au regard de certaines règles renseignées auprès du modèle
+```
+
+---
+
+Hyper parametering => modify the behaviour of the learning algorithm
+
+---
+
+Related to sending a request :
+
+LEAST LATENCY TO MOST LATENCY :
+
+- Real-time inference :		+
+- Asynchronous inference :	++
+- Batch transform :		+++
+
+---
+
+Few shot prompting (prompt engineering) -> toujours la solution la moins couteuse
+
+---
+
+Monitoring des appels API de Bedrock => AWS Cloudtrail
+
+---
